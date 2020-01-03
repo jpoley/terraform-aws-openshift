@@ -5,8 +5,10 @@
 resource "aws_route53_zone" "internal" {
   name = "openshift.local"
   comment = "OpenShift Cluster Internal DNS"
-  vpc_id = "${aws_vpc.openshift.id}"
-  tags {
+  vpc {
+    vpc_id = "${aws_vpc.openshift.id}"
+  }
+  tags = {
     Name    = "OpenShift Internal DNS"
     Project = "openshift"
   }
